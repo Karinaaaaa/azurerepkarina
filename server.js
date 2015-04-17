@@ -6,9 +6,9 @@ var express = require("express"),
 
 app.use(express.static(__dirname + "/client"));
 
-server = http.createServer(app);
+//server = http.createServer(app);
 
-
-server.listen(port);
+http.createServer(app).listen(port);
+//server.listen(port);
 
 console.log("Server running on port 3000");
