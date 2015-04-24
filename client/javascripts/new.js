@@ -1,32 +1,66 @@
+var nums = [1, 2, 3, 4, 5];
+var squares = nums.map(function (num) 
+{
+return num*num;
+});
+
+
 var main = function () {
 "use strict";
 
+var $photo;
+var $IMGcom;
 var url = "http://api.flickr.com/services/feeds/photos_public.gne?" +
 "tags=dogs&format=json&jsoncallback=?";
-var imgcomment;
 
-var $photo;
+var someObject ={};
+
+setInterval(function () {
+    $.getJSON("/someway.json", function (fromServer) {
+    // Сейчас "fromServer" становится объектом, возвращаемым маршрутом someway.json
+    console.log(fromServer);
+	});
+  }, 5000);
+
+var Clake = function() {
+	$.post("/todos", someObject, function (response) {
+    // это обратный вызов, выполняется при ответе сервера
+    //console.log("Получение данных с сервера");
+    window.alert("Получение "+response);
+    });
+};
+
+
+
+
+
 $.getJSON(url, function (flickrResponse) {
 flickrResponse.items.forEach(function (photo) {
-var $img = $("<img>").hide();
-$img.attr("src", photo.media.m);
+    var $img = $("<img>").hide();
 
-$img.on("click", function () { 
+    	$img.on("click", function ()
+		{
+		var that = this;
 
-	$("img").fadeOut();
-	$img.fadeIn(1000);
-	
-	imgcomment=$img.attr("src");	
+	$("img").hide(1000,  function() {
+			$img.show();
+			$IMGcom = $img.attr("src");
+
 
 });
-
-
+		
+		
+		
+    });
+$img.attr("src", photo.media.m);
 $("main").append($img);
 $img.fadeIn();
 
-});
+
+
 });
 
+});
 
 
 $(".tabs a:nth-child(1)").on("click", function () 
@@ -52,11 +86,11 @@ $(".tabs a:nth-child(1)").on("click", function ()
    {	
 
  	$(".tabs span").removeClass("active");
-    // РґРµР»Р°РµРј Р°РєС‚РёРІРЅРѕР№ РїРµСЂРІСѓСЋ РІРєР»Р°РґРєСѓ
+    // делаем активной первую вкладку
     $(".tabs a:nth-child("+tabnumber+") span").addClass("active");
-    // РѕС‡РёС‰Р°РµРј РѕСЃРЅРѕРІРЅРѕРµ СЃРѕРґРµСЂР¶Р°РЅРёРµ, С‡С‚РѕР±С‹ РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ РµРіРѕ
+    // очищаем основное содержание, чтобы переопределить его
     $("main .content").empty();
-    // РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ false, С‚Р°Рє РєР°Рє РјС‹ РЅРµ РїРµСЂРµС…РѕРґРёРј РїРѕ СЃСЃС‹Р»РєРµ
+    // возвращается false, так как мы не переходим по ссылке
 
     
 		if(tabnumber===1)
@@ -82,8 +116,10 @@ if (event.keyCode === 13)
 addCommentFromInputBox();
 	}
 });
+
  $(".comment-input button").on("click", function (event) {
     addCommentFromInputBox();
+    Clake();
   });
 
 
@@ -93,17 +129,15 @@ addCommentFromInputBox();
  	if ($(".comment-input input").val() !== "") {
  		var $new_comment = $("<p>");
 	    $new_comment.text($(".comment-input input").val());
-	    $new_comment.hide;
 	    $(".comments").append($new_comment);
 	    $new_comment.fadeIn(1500);
-	    var commentInput=$(".comment-input input").val();
-	    var jsonString1 = {
-		  id : imgcomment,
-		  Comment : commentInput
-		};
-
-	    var jsonString2 = JSON.stringify(jsonString1);
-	    //console.log(jsonString2);
+	    var $comms = $(".comment-input input").val();
+	    $(".comment-input input").val("");
+	    var jsonString = { "Id" : $IMGcom, "Comment" : $comms };
+		//var jsonString2 = JSON.stringify(jsonString);
+		console.log(jsonString);
+		someObject=jsonString;
+	}
 
 	};
 
@@ -115,11 +149,9 @@ if (event.keyCode === 13)
 	    $(".comments").append($new_comment);
 	    $new_comment.fadeIn(2000);	
 	    $(".comment-input input").val("");
+
+};
+
 	};
 
-
-
-
-};
-};
 $(document).ready(main);

@@ -1,12 +1,30 @@
-var http = require("http"),
-    server;
-    var port = process.env.PORT||1337;
+var express = require("express"),
+app = express(),
+http = require("http"),
+port = process.env.PORT || 1337;
 
-server = http.createServer(function (req, res) {
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.end("Hello World!\n");
+
+var coolObject = {"my": 12345};
+var toDos = [];
+
+//app.use(express.urlencoded());
+app.use(express.static(__dirname + "/client"));
+
+// создадим HTTP-сервер на базе Express
+http.createServer(app).listen(port);
+
+ app.get("/someway.json", function (req, res) {
+res.json(coolObject);
 });
 
-server.listen(1337);
 
-console.log("Server running on port 3000");
+
+app.post("/todos", function (req, res) {
+  // сейчас объект сохраняется в req.body
+  var newToDo = req.body;
+  console.log(newToDo);
+  toDos.push(newToDo);
+  // отправляем простой объект
+  res.json({"message":"Вы разместили комментарий на сервере!" + newToDo});
+
+});
