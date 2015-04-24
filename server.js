@@ -3,6 +3,8 @@ var express = require("express"),
 	app = express(),
     server,
     port=process.env.PORT || 1337;
+var coolobject=new 
+
 
 app.use(express.static(__dirname + "/client"));
 
