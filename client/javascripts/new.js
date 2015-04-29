@@ -15,12 +15,12 @@ var url = "http://api.flickr.com/services/feeds/photos_public.gne?" +
 
 var someObject ={};
 
-setInterval(function () {
-    $.getJSON("/someway.json", function (fromServer) {
-    // Сейчас "fromServer" становится объектом, возвращаемым маршрутом someway.json
-    console.log(fromServer);
-	});
-  }, 5000);
+// setInterval(function () {
+//     $.getJSON("/someway.json", function (fromServer) {
+//     // Сейчас "fromServer" становится объектом, возвращаемым маршрутом someway.json
+//     console.log(fromServer);
+// 	});
+//   }, 5000);
 
 var Clake = function() {
 	$.post("/todos", someObject, function (response) {
@@ -135,8 +135,9 @@ addCommentFromInputBox();
 	    $(".comment-input input").val("");
 	    var jsonString = { "Id" : $IMGcom, "Comment" : $comms };
 		//var jsonString2 = JSON.stringify(jsonString);
-		console.log(jsonString);
+		
 		someObject=jsonString;
+		console.log(someObject);
 	}
 
 	};
