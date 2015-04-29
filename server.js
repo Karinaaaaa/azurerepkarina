@@ -12,16 +12,16 @@ twitter = ntwitter(credentials);
 
 var coolObject = {"my": 12345};
 var toDos = [];
-// РЅР°СЃС‚СЂРѕРёРј РїРѕС‚РѕРє twitter СЃ С‚СЂРµРјСЏ РїР°СЂР°РјРµС‚СЂР°РјРё, СЂР°Р·РґРµР»РµРЅРЅС‹РјРё Р·Р°РїСЏС‚С‹РјРё
+// настроим поток twitter с тремя параметрами, разделенными запятыми
 
 twitter.stream(
-// РїРµСЂРІС‹Р№ РїР°СЂР°РјРµС‚СЂ вЂ” СЃС‚СЂРѕРєР°
+// первый параметр — строка
 "statuses/filter",
 
-// РІС‚РѕСЂРѕР№ РїР°СЂР°РјРµС‚СЂ вЂ” РѕР±СЉРµРєС‚, СЃРѕРґРµСЂР¶Р°С‰РёР№ РјР°СЃСЃРёРІ СЃРѕ СЃР»РѕРІР°РјРё, Рє. РјС‹ РёС‰РµРј
+// второй параметр — объект, содержащий массив со словами, к. мы ищем
 { "track": ["awesome", "cool", "rad", "gnarly", "groovy" ]},
 
-// С‚СЂРµС‚РёР№ РїР°СЂР°РјРµС‚СЂ вЂ” РѕР±СЂР°С‚РЅС‹Р№ РІС‹Р·РѕРІ, СЃСЂР°Р±Р°С‚С‹РІР°СЋС‰РёР№, РєРѕРіРґР° РїРѕС‚РѕРє СЃРѕР·РґР°РЅ
+// третий параметр — обратный вызов, срабатывающий, когда поток создан
 function(stream) {
 
 	stream.on("data", function(tweet) {
@@ -36,7 +36,7 @@ function(stream) {
 //app.use(express.urlencoded());
 app.use(express.static(__dirname + "/client"));
 
-// СЃРѕР·РґР°РґРёРј HTTP-СЃРµСЂРІРµСЂ РЅР° Р±Р°Р·Рµ Express
+// создадим HTTP-сервер на базе Express
 http.createServer(app).listen(port);
 
  app.get("/someway.json", function (req, res) {
@@ -46,11 +46,11 @@ res.json(coolObject);
 
 
 app.post("/todos", function (req, res) {
-  // СЃРµР№С‡Р°СЃ РѕР±СЉРµРєС‚ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ req.body
+  // сейчас объект сохраняется в req.body
   var newToDo = req.body;
   //console.log(newToDo);
-  toDos.push(newToDo);
-  // РѕС‚РїСЂР°РІР»СЏРµРј РїСЂРѕСЃС‚РѕР№ РѕР±СЉРµРєС‚
-  res.json({"message":"Р’С‹ СЂР°Р·РјРµСЃС‚РёР»Рё РєРѕРјРјРµРЅС‚Р°СЂРёР№ РЅР° СЃРµСЂРІРµСЂРµ!" + newToDo});
-
+  toDos.push(newToDo.Id);
+  // отправляем простой объект
+  res.json({"message":"Вы разместили комментарий на сервере!" + newToDo.Id});
+res.json({"message":"Вы разместили комментарий на сервере в массиве toDos" + toDos[0]});
 });
