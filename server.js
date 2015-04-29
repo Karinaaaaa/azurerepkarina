@@ -50,7 +50,7 @@ app.post("/todos", function (req, res) {
   var newToDo = req.body;
   //console.log(newToDo);
   res.json({"message":"Вы разместили комментарий на сервере!" + newToDo.Id});
-  toDos.push(newToDo.Id);
+  //toDos.push(newToDo.Id);
   // отправляем простой объект//
-  res.json({"message":"Вы разместили комментарий на сервере в массиве toDos" + toDos[0]});
+  //res.json({"message":"Вы разместили комментарий на сервере в массиве toDos" + toDos[0]});
 });
