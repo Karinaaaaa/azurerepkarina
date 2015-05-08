@@ -23,10 +23,13 @@ var someObject ={};
 //   }, 5000);
 
 var Clake = function() {
-	$.post("/todos", someObject, function (response) {
+	console.log("Передаём на сервер");
+	console.log(someObject);
+	$.post("todos", someObject, function (response) {
     // это обратный вызов, выполняется при ответе сервера
     //console.log("Получение данных с сервера");
-    window.alert("Получение "+ response);
+    window.alert(response);
+    //window.alert("Получение "+ response);
     });
 };
 
@@ -137,8 +140,7 @@ addCommentFromInputBox();
 		//var jsonString2 = JSON.stringify(jsonString);
 		
 		someObject=jsonString;
-		console.log("Передаём на сервер");
-		console.log(someObject);
+
 	}
 
 	};
