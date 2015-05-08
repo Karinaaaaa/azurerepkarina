@@ -6,8 +6,9 @@
 
 "dependencies": {
 
-"express": "*",
-"ntwitter": "*"
+"express": "3.4.x",
+"ntwitter": "0.5.x",
+"mongoose": "3.6.x"
 
 }
 
