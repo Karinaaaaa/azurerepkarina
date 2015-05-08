@@ -1,4 +1,3 @@
-var ntwitter = require('ntwitter');
 var express = require("express"),
 app = express(),
 http = require("http"),
@@ -44,7 +43,7 @@ res.json(coolObject);
 });
 
 
-app.use(express.urlencoded());
+app.use(express.bodyparser());
 app.post("/todos", function (req, res) {
   // сейчас объект сохраняется в req.body
   var newToDo = req.body;
