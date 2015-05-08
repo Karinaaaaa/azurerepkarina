@@ -137,7 +137,7 @@ addCommentFromInputBox();
 		//var jsonString2 = JSON.stringify(jsonString);
 		
 		someObject=jsonString;
-		console.log"Передаём на сервер");
+		console.log("Передаём на сервер");
 		console.log(someObject);
 	}
 
