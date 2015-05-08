@@ -1,16 +1,31 @@
 var express = require("express"),
+app = express(),
+stream = require("./stream.js"),
 http = require("http"),
-app = express();
-// РЅР°СЃС‚СЂРѕРёРј СЃС‚Р°С‚РёС‡РµСЃРєСѓСЋ С„Р°Р№Р»РѕРІСѓСЋ РїР°РїРєСѓ
-// РґР»СЏ РјР°СЂС€СЂСѓС‚Р° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
-// (СЃРј. С‚Р°РєР¶Рµ Р·Р°РјРµС‡Р°РЅРёРµ Рѕ РјР°СЂС€СЂСѓС‚Р°С… РґР°Р»РµРµ)
+port = process.env.PORT || 1337;
+
+
+var coolObject = {my: 12345};
+var toDos = [];
+
+//app.use(express.urlencoded());
 app.use(express.static(__dirname + "/client"));
-// СЃРѕР·РґР°РґРёРј HTTP-СЃРµСЂРІРµСЂ РЅР° Р±Р°Р·Рµ Express
-http.createServer(app).listen(3000);
-// РЅР°СЃС‚СЂРѕРёРј РјР°СЂС€СЂСѓС‚С‹
-app.get("/hello", function (req, res) {
-res.send("Hello, World!");
+
+// создадим HTTP-сервер на базе Express
+http.createServer(app).listen(port);
+
+app.get("/someway.json", function (req, res) {
+res.json(stream);
 });
-app.get("/goodbye", function (req, res) {
-res.send("Goodbye, World!");
+
+
+app.use(express.bodyParser());
+app.post("/todos", function (req, res) {
+  // сейчас объект сохраняется в req.body
+  var newToDo = req.body;
+  console.log(newToDo);
+  toDos.push(newToDo);
+  // отправляем простой объект
+  res.json({"message":"Вы разместили данные на сервере!"});
 });
+
