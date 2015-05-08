@@ -26,7 +26,7 @@ var Clake = function() {
 	$.post("/todos", someObject, function (response) {
     // это обратный вызов, выполняется при ответе сервера
     //console.log("Получение данных с сервера");
-    window.alert("Получение "+response);
+    window.alert("Получение "+ response);
     });
 };
 

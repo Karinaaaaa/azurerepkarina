@@ -43,7 +43,7 @@ res.json(coolObject);
 });
 
 
-app.use(express.bodyparser());
+app.use(express.bodyParser());
 app.post("/todos", function (req, res) {
   // сейчас объект сохраняется в req.body
   var newToDo = req.body;
