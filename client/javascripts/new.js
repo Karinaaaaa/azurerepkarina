@@ -23,7 +23,7 @@ var someObject ={};
 //   }, 5000);
 
 var Clake = function() {
-	console.log("Передаём на сервер");
+	//console.log("Передаём на сервер");
 	console.log(someObject);
 	$.post("todos", someObject, function (response) {
     // это обратный вызов, выполняется при ответе сервера
@@ -136,7 +136,7 @@ addCommentFromInputBox();
 	    $new_comment.fadeIn(1500);
 	    var $comms = $(".comment-input input").val();
 	    $(".comment-input input").val("");
-	    var jsonString = { "Id" : $IMGcom, "Comment" : $comms };
+	    var jsonString = '{ "Id" : $IMGcom, "Comment" : $comms }';
 		//var jsonString2 = JSON.stringify(jsonString);
 		
 		someObject=jsonString;
