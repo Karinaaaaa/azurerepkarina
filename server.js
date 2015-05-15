@@ -2,7 +2,10 @@ var express = require("express"),
 app = express(),
 stream = require("./stream.js"),
 http = require("http"),
+<<<<<<< HEAD
 //port = 3000;
+=======
+>>>>>>> a4285cd2ecba9100b9e263110a02e22ee6b44aa1
 port = process.env.PORT || 1337;
 
 
@@ -12,7 +15,11 @@ var toDos = [];
 //app.use(express.urlencoded());
 app.use(express.static(__dirname + "/client"));
 
+<<<<<<< HEAD
 // СЃРѕР·РґР°РґРёРј HTTP-СЃРµСЂРІРµСЂ РЅР° Р±Р°Р·Рµ Express
+=======
+// создадим HTTP-сервер на базе Express
+>>>>>>> a4285cd2ecba9100b9e263110a02e22ee6b44aa1
 http.createServer(app).listen(port);
 
 app.get("/someway.json", function (req, res) {
@@ -22,6 +29,7 @@ res.json(stream);
 
 app.use(express.bodyParser());
 app.post("/todos", function (req, res) {
+<<<<<<< HEAD
   // СЃРµР№С‡Р°СЃ РѕР±СЉРµРєС‚ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ req.body
   var newToDo = req.body;
   console.log(newToDo);
@@ -67,16 +75,62 @@ com1.find({"commentariy":"bad"}, function (err, comments) {
     com.save(function (err) {
       if (err) {
         // РµСЃР»Рё РѕР±СЉРµРєС‚ РЅРµ Р±С‹Р» СЃРѕС…СЂР°РЅРµРЅ
+=======
+  // сейчас объект сохраняется в req.body
+  var newToDo = req.body;
+  console.log(newToDo);
+  toDos.push(newToDo);
+  // отправляем простой объект
+  res.json({"message":"Вы разместили данные на сервере!"});
+});
+
+var mongoose=require("mongoose"),
+var CommSchema = mongoose.Schema({
+title : String,
+commentariy : String
+});
+//Создадим объект Comm по схеме CommSchema
+var com1 = mongoose.model("Comm", CommSchema);
+
+
+var c1 = new сom1({"title":"Doggie", "commentariy":"goodie"});
+//Сохранение в хранилище
+c1.save(function (err) {
+if (err !== null) {
+// объект не был сохранен
+console.log(err);
+} else {
+console.log("Объект не был сохранен!");
+}
+});
+
+//Найти записи
+Comm.find({"title" : "bad"}, function (err, comments) {
+  comments.forEach(function (com) {
+    // обновляем комментарий с заголовком "bad"
+    com.commentariy = "the best!";
+    // сохраняем измененный комментарий
+    com.save(function (err) {
+      if (err) {
+        // если объект не был сохранен
+>>>>>>> a4285cd2ecba9100b9e263110a02e22ee6b44aa1
         console.log(err);
       }
     });
   });
 });
+<<<<<<< HEAD
 //РЈРґР°Р»РёС‚СЊ
 com1.remove({ "title":"Doggie", "commentariy":"goodie" }, function (err) {
   if (err !== null) {
     // РµСЃР»Рё РѕР±СЉРµРєС‚ РЅРµ Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ
     console.log(deletion);
+=======
+//Удалить
+Comm.remove({ "title":"bad", "commentariy":"the best!" }, function (err) {
+  if (err !== null) {
+    // если объект не был успешно удален
+>>>>>>> a4285cd2ecba9100b9e263110a02e22ee6b44aa1
     console.log(err);
   }
   });
