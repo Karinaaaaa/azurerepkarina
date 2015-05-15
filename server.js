@@ -29,3 +29,45 @@ app.post("/todos", function (req, res) {
   res.json({"message":"Вы разместили данные на сервере!"});
 });
 
+var mongoose=require("mongoose"),
+var CommSchema = mongoose.Schema({
+title : String,
+commentariy : String
+});
+//Создадим объект Comm по схеме CommSchema
+var com1 = mongoose.model("Comm", CommSchema);
+
+
+var c1 = new сom1({"title":"Doggie", "commentariy":"goodie"});
+//Сохранение в хранилище
+c1.save(function (err) {
+if (err !== null) {
+// объект не был сохранен
+console.log(err);
+} else {
+console.log("Объект не был сохранен!");
+}
+});
+
+//Найти записи
+Comm.find({"title" : "bad"}, function (err, comments) {
+  comments.forEach(function (com) {
+    // обновляем комментарий с заголовком "bad"
+    com.commentariy = "the best!";
+    // сохраняем измененный комментарий
+    com.save(function (err) {
+      if (err) {
+        // если объект не был сохранен
+        console.log(err);
+      }
+    });
+  });
+});
+//Удалить
+Comm.remove({ "title":"bad", "commentariy":"the best!" }, function (err) {
+  if (err !== null) {
+    // если объект не был успешно удален
+    console.log(err);
+  }
+  });
+
