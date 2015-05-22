@@ -105,7 +105,7 @@ console.log("Îáúåêò íå áûë ñîõðàíåí!");
 });
 
 //Íàéòè çàïèñè
-com1.find({"title" : "bad"}, function (err, comments) {
+Comm.find({"title" : "bad"}, function (err, comments) {
   comments.forEach(function (com) {
     // îáíîâëÿåì êîììåíòàðèé ñ çàãîëîâêîì "bad"
     com.commentariy = "the best!";
@@ -113,17 +113,24 @@ com1.find({"title" : "bad"}, function (err, comments) {
     com.save(function (err) {
       if (err) {
         // åñëè îáúåêò íå áûë ñîõðàíåí
-
+>>>>>>> a4285cd2ecba9100b9e263110a02e22ee6b44aa1
         console.log(err);
       }
     });
   });
 });
-// £Ð´Ð°Ð»Ð¸Ñ‚ÑŒ
+<<<<<<< HEAD
+//Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ
 com1.remove({ "title":"Doggie", "commentariy":"goodie" }, function (err) {
   if (err !== null) {
-    // ÐµÑÐ»Ð¸ Ð¾Ð±ÑŠÐµÐºÑ‚ Ð½Ðµ Ð±Ñ‹Ð» ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÐ´Ð°Ð»ÐµÐ½    console.log(deletion);
-
+    // ÐµÑÐ»Ð¸ Ð¾Ð±ÑŠÐµÐºÑ‚ Ð½Ðµ Ð±Ñ‹Ð» ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÐ´Ð°Ð»ÐµÐ½
+    console.log(deletion);
+=======
+//Óäàëèòü
+Comm.remove({ "title":"bad", "commentariy":"the best!" }, function (err) {
+  if (err !== null) {
+    // åñëè îáúåêò íå áûë óñïåøíî óäàëåí
+>>>>>>> a4285cd2ecba9100b9e263110a02e22ee6b44aa1
     console.log(err);
   }
   });
