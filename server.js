@@ -4,10 +4,12 @@ stream = require("./stream.js"),
 http = require("http"),
 port = process.env.PORT || 1337;
 
-
 var coolObject = {my: 12345};
 var toDos = [];
 
+var mongoose=require("mongoose"),
+//mongoUrl="mongodb://localhost/test";
+var ConnectoinString=process.env.CUSTOMCONNSTR_MONGOLAB_URL;
 //app.use(express.urlencoded());
 app.use(express.static(__dirname + "/client"));
 
@@ -30,9 +32,7 @@ app.post("/todos", function (req, res) {
   res.json({"message":"Р’С‹ СЂР°Р·РјРµСЃС‚РёР»Рё РґР°РЅРЅС‹Рµ РЅР° СЃРµСЂРІРµСЂРµ!"});
 });
 
-var mongoose=require("mongoose"),
-//mongoUrl="mongodb://localhost/test";
-var ConnectoinString=process.env.CUSTOMCONNSTR_MONGOLAB_URL;
+
 mongoose.connect (ConnectoinString);
 var CommSchema = mongoos.Schema({
 title : String,
@@ -75,41 +75,7 @@ com1.find({"commentariy":"bad"}, function (err, comments) {
   res.json({"message":"Вы разместили данные на сервере!"});
 });
 
-var mongoose=require("mongoose"),
-var CommSchema = mongoose.Schema({
-title : String,
-commentariy : String
-});
-//Создадим объект Comm по схеме CommSchema
-var com1 = mongoose.model("Comm", CommSchema);
 
-
-var c1 = new сom1({"title":"Doggie", "commentariy":"goodie"});
-//Сохранение в хранилище
-c1.save(function (err) {
-if (err !== null) {
-// объект не был сохранен
-console.log(err);
-} else {
-console.log("Объект не был сохранен!");
-}
-});
-
-//Найти записи
-com1.find({"title" : "bad"}, function (err, comments) {
-  comments.forEach(function (com) {
-    // обновляем комментарий с заголовком "bad"
-    com.commentariy = "the best!";
-    // сохраняем измененный комментарий
-    com.save(function (err) {
-      if (err) {
-        // если объект не был сохранен
-
-        console.log(err);
-      }
-    });
-  });
-});
 // ЈРґР°Р»РёС‚СЊ
 com1.remove({ "title":"Doggie", "commentariy":"goodie" }, function (err) {
   if (err !== null) {
