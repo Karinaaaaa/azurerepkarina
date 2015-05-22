@@ -2,10 +2,6 @@ var express = require("express"),
 app = express(),
 stream = require("./stream.js"),
 http = require("http"),
-<<<<<<< HEAD
-//port = 3000;
-=======
->>>>>>> a4285cd2ecba9100b9e263110a02e22ee6b44aa1
 port = process.env.PORT || 1337;
 
 
@@ -15,11 +11,7 @@ var toDos = [];
 //app.use(express.urlencoded());
 app.use(express.static(__dirname + "/client"));
 
-<<<<<<< HEAD
-// ÑÐ¾Ð·Ð´Ð°Ð´Ð¸Ð¼ HTTP-ÑÐµÑ€Ð²ÐµÑ€ Ð½Ð° Ð±Ð°Ð·Ðµ Express
-=======
-// ñîçäàäèì HTTP-ñåðâåð íà áàçå Express
->>>>>>> a4285cd2ecba9100b9e263110a02e22ee6b44aa1
+
 http.createServer(app).listen(port);
 
 app.get("/someway.json", function (req, res) {
@@ -29,7 +21,7 @@ res.json(stream);
 
 app.use(express.bodyParser());
 app.post("/todos", function (req, res) {
-<<<<<<< HEAD
+
   // ÑÐµÐ¹Ñ‡Ð°Ñ Ð¾Ð±ÑŠÐµÐºÑ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½ÑÐµÑ‚ÑÑ Ð² req.body
   var newToDo = req.body;
   console.log(newToDo);
@@ -75,8 +67,7 @@ com1.find({"commentariy":"bad"}, function (err, comments) {
     com.save(function (err) {
       if (err) {
         // ÐµÑÐ»Ð¸ Ð¾Ð±ÑŠÐµÐºÑ‚ Ð½Ðµ Ð±Ñ‹Ð» ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½
-=======
-  // ñåé÷àñ îáúåêò ñîõðàíÿåòñÿ â req.body
+
   var newToDo = req.body;
   console.log(newToDo);
   toDos.push(newToDo);
