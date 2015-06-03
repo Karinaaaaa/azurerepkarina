@@ -4,12 +4,23 @@ app = express(),
 http = require("http"),
 port = process.env.PORT || 1337;
 
+
 var mongoose= require('mongoose');
 var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI;
 mongoose.connect(connectionString);
 
 var CommSchema = mongoose.Schema
 ({
+
+var coolObject = {my: 12345};
+var toDos = [];
+
+var mongoose=require("mongoose"),
+//mongoUrl="mongodb://localhost/test";
+var ConnectoinString=process.env.CUSTOMCONNSTR_MONGOLAB_URL;
+//app.use(express.urlencoded());
+app.use(express.static(__dirname + "/client"));
+
 
 "title" : String,
 
@@ -32,6 +43,13 @@ console.log("Объект не был сохранен!");
 	{
 console.log("Объект был сохранен!");
 	}
+);};
+
+
+mongoose.connect (ConnectoinString);
+var CommSchema = mongoos.Schema({
+title : String,
+commentariy : String
 
 });
 };
@@ -59,6 +77,7 @@ console.log(err);
 
 	});
 };
+
 
 /*com1.remove({"title":"Doggie", "commentariy":"goodie"}, function(err)
 {
@@ -93,4 +112,14 @@ app.post("/todos", function (req, res)
   // отправляем простой объект
   res.json(newToDo);
 });
+
+
+// ЈРґР°Р»РёС‚СЊ
+com1.remove({ "title":"Doggie", "commentariy":"goodie" }, function (err) {
+  if (err !== null) {
+    // РµСЃР»Рё РѕР±СЉРµРєС‚ РЅРµ Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ    console.log(deletion);
+
+    console.log(err);
+  }
+  });
 
