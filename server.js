@@ -40,10 +40,11 @@ if (err !== null)
 console.log(err);
 console.log("Объект не был сохранен!");
 		} else 
-	{
+	
 console.log("Объект был сохранен!");
 	}
-);};
+	)
+};
 
 
 mongoose.connect (ConnectoinString);
@@ -52,7 +53,6 @@ title : String,
 commentariy : String
 
 });
-};
 
 var ff= function(){
 com1.find({"title" : "bad"}, function (err, comments) {
