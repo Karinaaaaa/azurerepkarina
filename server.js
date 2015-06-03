@@ -1,6 +1,6 @@
 var express = require("express"),
 app = express(),
-stream = require("./stream.js"),
+//stream = require("./stream.js"),
 http = require("http"),
 port = process.env.PORT || 1337;
 
@@ -21,8 +21,8 @@ var com1 = mongoose.model("Comm", CommSchema);
 
 var c1 = new com1({"title":"Doggie", "commentariy":"goodie"});
 
-c1.save(function (err) 
-{
+var cc = function(){
+	c1.save(function (err) {
 
 if (err !== null) 
 		{
@@ -34,12 +34,12 @@ console.log("Объект был сохранен!");
 	}
 
 });
+};
 
-com1.find({"title" : "bad"}, function (err, comments) 
-	{
+var ff= function(){
+com1.find({"title" : "bad"}, function (err, comments) {
 
-comments.forEach(function (com) 
-		{
+comments.forEach(function (com) {
 com.commentariy = "the best!";
 
 com.save(function (err) 
@@ -58,6 +58,7 @@ console.log(err);
 		});
 
 	});
+};
 
 /*com1.remove({"title":"Doggie", "commentariy":"goodie"}, function(err)
 {
@@ -90,6 +91,6 @@ app.post("/todos", function (req, res)
   console.log(newToDo);
   toDos.push(newToDo);
   // отправляем простой объект
-  res.json({"message":"Вы разместили данные на сервере!"});
+  res.json(newToDo);
 });
 

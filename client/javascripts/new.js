@@ -13,7 +13,7 @@ var $IMGcom;
 var url = "http://api.flickr.com/services/feeds/photos_public.gne?" +
 "tags=dogs&format=json&jsoncallback=?";
 
-var someObject ={};
+var someObject;
 
 // setInterval(function () {
 //     $.getJSON("/someway.json", function (fromServer) {
@@ -24,6 +24,7 @@ var someObject ={};
 
 var Clake = function() {
 	//console.log("Передаём на сервер");
+	consoie.log(typeof(someObject));
 	console.log(someObject);
 	$.post("todos", someObject, function (response) {
     // это обратный вызов, выполняется при ответе сервера
@@ -137,7 +138,6 @@ addCommentFromInputBox();
 	    var $comms = $(".comment-input input").val();
 	    $(".comment-input input").val("");
 	    var jsonString = '{ "Id" : $IMGcom, "Comment" : $comms }';
-		//var jsonString2 = JSON.stringify(jsonString);
 		
 		someObject=jsonString;
 
