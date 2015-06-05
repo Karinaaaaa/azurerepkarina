@@ -23,7 +23,7 @@ app.use(express.static(__dirname + "/client"));
 app.use(express.bodyParser());
 
 
-id : String,
+Id : String,
 
 commentariy : String
 
@@ -106,7 +106,7 @@ res.json("stream");
 
 var fff= function(newId,newcomment){
 
-var comff = new com1({ "id":newId, "commentariy":newcomment });
+var comff = new com1({ "Id":newId, "commentariy":newcomment });
 var comff.save(function (err,result) 
 {
   if (err !== null) {
