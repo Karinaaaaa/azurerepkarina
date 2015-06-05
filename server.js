@@ -20,19 +20,20 @@ var mongoose=require("mongoose"),
 var ConnectoinString=process.env.CUSTOMCONNSTR_MONGOLAB_URL;
 //app.use(express.urlencoded());
 app.use(express.static(__dirname + "/client"));
+app.use(express.bodyParser());
 
 
-"title" : String,
+id : String,
 
-"commentariy" : String
+commentariy : String
 
 });
 
 var com1 = mongoose.model("Comm", CommSchema);
 
-var c1 = new com1({"title":"Doggie", "commentariy":"goodie"});
 
-var cc = function(){
+var cc = function(Doggie,goodie){
+	var c1 = new com1({"title":Doggie, "commentariy":goodie});
 	c1.save(function (err) {
 
 if (err !== null) 
@@ -98,28 +99,42 @@ http.createServer(app).listen(port);
 
 app.get("/someway.json", function (req, res)
 {
-res.json(stream);
+res.json("stream");
 });
 
 
-app.use(express.bodyParser());
+
+var fff= function(newId,newcomment){
+
+var comff = new com1({ "id":newId, "commentariy":newcomment });
+var comff.save(function (err,result) 
+{
+  if (err !== null) {
+    // РµСЃР»Рё РѕР±СЉРµРєС‚ РЅРµ Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ    console.log(deletion);
+    console.log(err);
+  }
+  else{
+
+console.log("объект был сохранен");
+}
+}
+
+ ); };
+
+
+
 app.post("/todos", function (req, res) 
 {
   // сейчас объект сохраняется в req.body
   var newToDo = req.body;
   console.log(newToDo);
   toDos.push(newToDo);
+   fff(newToDo.Id,newToDo.Comment);
   // отправляем простой объект
   res.json(newToDo);
 });
 
 
 // ЈРґР°Р»РёС‚СЊ
-com1.remove({ "title":"Doggie", "commentariy":"goodie" }, function (err) {
-  if (err !== null) {
-    // РµСЃР»Рё РѕР±СЉРµРєС‚ РЅРµ Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ    console.log(deletion);
 
-    console.log(err);
-  }
-  });
-
+};

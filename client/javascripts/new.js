@@ -26,10 +26,10 @@ var Clake = function() {
 	//console.log("Передаём на сервер");
 	consoie.log(typeof(someObject));
 	console.log(someObject);
-	$.post("todos", someObject, function (response) {
+	$.post("todos", someObject, function (data) {
     // это обратный вызов, выполняется при ответе сервера
     //console.log("Получение данных с сервера");
-    window.alert(response);
+    window.alert(data);
     //window.alert("Получение "+ response);
     });
 };
