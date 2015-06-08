@@ -39,7 +39,7 @@ var com1 = mongoose.model("Comm", CommSchema);
 // });
 
 //"id" : "http://farm1.staticflickr.com/543/17860695134_457dc23186_m.jpg"
- function cf () {
+ function cc () {
  	var comM = "sssss";
  	com1.find({"id" : "http://farm1.staticflickr.com/543/17860695134_457dc23186_m.jpg"}, function (err, comments) 
 	{
@@ -94,14 +94,14 @@ http.createServer(app).listen(port);
 
 app.get("/someway.json", function (req, res)
 {
-	var jhjhn = cf();
+	var jhjhn = cc();
 res.json(jhjhn);
 });
 
 
 
 
- var ToDB = function (newId, newComment)
+ var ToDcc = function (newId, newComment)
  		{
  			var com11 = new com1  ({"id" : newId, "commentariy" : newComment });
  			com11.save(function (err, result) 
@@ -128,7 +128,7 @@ app.post("/todos", function (req, res)
   var newToDo = req.body;
   console.log(newToDo);
  
-  ToDB(newToDo.Id, newToDo.comment);
+  ToDcc(newToDo.Id, newToDo.comment);
   // отправляем простой объект
   res.json(newToDo);
 });
