@@ -4,26 +4,17 @@ app = express(),
 http = require("http"),
 port = process.env.PORT || 1337;
 
-
 var mongoose= require('mongoose');
 var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI;
 mongoose.connect(connectionString);
 
-var CommSchema = mongoose.Schema
-({
 
-var coolObject = {my: 12345};
-var toDos = [];
-
-var mongoose=require("mongoose"),
-//mongoUrl="mongodb://localhost/test";
-var ConnectoinString=process.env.CUSTOMCONNSTR_MONGOLAB_URL;
-//app.use(express.urlencoded());
-app.use(express.static(__dirname + "/client"));
 app.use(express.bodyParser());
 
+var CommSchema = new mongoose.Schema
+({
 
-Id : String,
+id : String,
 
 commentariy : String
 
@@ -31,63 +22,67 @@ commentariy : String
 
 var com1 = mongoose.model("Comm", CommSchema);
 
+// var c1 = new com1({"id":"Doggie", "commentariy":"goodie"});
 
-var cc = function(Doggie,goodie){
-	var c1 = new com1({"title":Doggie, "commentariy":goodie});
-	c1.save(function (err) {
+// c1.save(function (err) 
+// {
 
-if (err !== null) 
-		{
-console.log(err);
-console.log("Объект не был сохранен!");
-		} else 
-	
-console.log("Объект был сохранен!");
-	}
-	)
-};
+// if (err !== null) 
+// 		{
+// console.log(err);
+// console.log("Объект не был сохранен!");
+// 		} else 
+// 	{
+// console.log("Объект был сохранен!");
+// 	}
 
+// });
 
-mongoose.connect (ConnectoinString);
-var CommSchema = mongoos.Schema({
-title : String,
-commentariy : String
-
-});
-
-var ff= function(){
-com1.find({"title" : "bad"}, function (err, comments) {
-
-comments.forEach(function (com) {
-com.commentariy = "the best!";
-
-com.save(function (err) 
+//"id" : "http://farm1.staticflickr.com/543/17860695134_457dc23186_m.jpg"
+ function cf () {
+ 	var comM = "sssss";
+ 	com1.find({"id" : "http://farm1.staticflickr.com/543/17860695134_457dc23186_m.jpg"}, function (err, comments) 
+	{
+		if(err)
 			{
+				comM=err;
+			}
 
-	if (err)	
-				{
+comments.forEach(function (com) 
+		{
+			comM = com[commentariy];
+//com.commentariy = "the best!";
+
+// com.save(function (err) 
+// 			{
+
+// 	if (err)	
+// 				{
 
 
-console.log(err);
+// console.log(err);
 
-				}
+// 				}
+// 				else {
+// 					}
 
-			});
+
+// 			});
 
 		});
 
 	});
+	return comM;
 };
-
-
-/*com1.remove({"title":"Doggie", "commentariy":"goodie"}, function(err)
+//function ca () {return "sdjf";}
+/*com1.remove({"id":"Doggie", "commentariy":"goodie"}, function(err)
 {
 	if(err!== null)
 	{
 		console.log(err);
 	}
-});
-*/
+});*/
+
 var coolObject = {my: 12345};
 var toDos = [];
 
@@ -99,27 +94,31 @@ http.createServer(app).listen(port);
 
 app.get("/someway.json", function (req, res)
 {
-res.json("stream");
+	var jhjhn = cf();
+res.json(jhjhn);
 });
 
 
 
-var fff= function(newId,newcomment){
 
-var comff = new com1({ "Id":newId, "commentariy":newcomment });
-var comff.save(function (err,result) 
+ var ToDB = function (newId, newComment)
+ 		{
+ 			var com11 = new com1  ({"id" : newId, "commentariy" : newComment });
+ 			com11.save(function (err, result) 
 {
-  if (err !== null) {
-    // РµСЃР»Рё РѕР±СЉРµРєС‚ РЅРµ Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ    console.log(deletion);
-    console.log(err);
-  }
-  else{
 
-console.log("объект был сохранен");
-}
+if (err !== null) {
+console.log(err);
+		}
+		else 
+	{
+console.log("Объект был сохранен!");
+	}
 }
 
- ); };
+
+);
+ 		};
 
 
 
@@ -128,13 +127,8 @@ app.post("/todos", function (req, res)
   // сейчас объект сохраняется в req.body
   var newToDo = req.body;
   console.log(newToDo);
-  toDos.push(newToDo);
-   fff(newToDo.Id,newToDo.Comment);
+ 
+  ToDB(newToDo.Id, newToDo.comment);
   // отправляем простой объект
   res.json(newToDo);
 });
-
-
-// ЈРґР°Р»РёС‚СЊ
-
-};
